@@ -2,7 +2,7 @@ import { ButtonCustom } from "./ButtonCustom";
 
 export function Grid() {
     return (
-        <>
+        <div className="grid grid-cols-4 grid-rows-5 gap-4 p-4 mt-4 bg-surface-base rounded-lg">
             <ButtonCustom label="C" variant="action" onClickCustom={() => {console.log('Presionaste: C')}} />
             <ButtonCustom label="+/-" variant="action" onClickCustom={() => { }} />
             <ButtonCustom label="%" variant="action" onClickCustom={() => { }} />
@@ -25,7 +25,7 @@ export function Grid() {
 
             <ButtonCustom label="0" variant="number" onClickCustom={() => { }} />
             <ButtonCustom label="." variant="operator" onClickCustom={() => { }} />
-            <ButtonCustom label="=" variant="operator" onClickCustom={() => { }} />
-        </>
+            <ButtonCustom className="col-span-2" label="=" variant="operator" onClickCustom={() => { }} />
+        </div>
     );
 }

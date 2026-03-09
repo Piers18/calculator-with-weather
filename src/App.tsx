@@ -3,19 +3,21 @@ import { Calculator } from "./components/calculator";
 
 function App() {
   return (
-    <>
-      <nav>
-        <div>
-          <span>
-            <FcCalculator/>
+    <div className="min-h-screen bg-surface-dark">
+      <nav className="flex justify-center items-center p-4 bg-surface-base">
+        <div className="flex justify-center items-center gap-2.5">
+          <span className="text-2xl">
+            <FcCalculator />
           </span>
-          Weather Calculator
+          <h1 className="text-primary-200 font-semibold tracking-wide">
+            Weather Calculator
+          </h1>
         </div>
       </nav>
-      <main>
+      <main className="flex justify-center">
         <Calculator />
       </main>
-    </>
+    </div>
   );
 }
 
