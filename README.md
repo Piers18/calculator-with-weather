@@ -30,7 +30,6 @@ src/
 │   ├── calculator.tsx            # Contenedor principal de la calculadora
 │   ├── display.tsx               # Pantalla que muestra los números
 │   ├── grid.tsx                  # Grid layout de los botones
-│   └── title.tsx                 # Título con información del clima
 ├── context/                      # React Context providers
 │   └── WeatherContext.tsx        # Provider global del estado del clima
 ├── hooks/                        # Custom hooks
