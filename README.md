@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# 🧮 Calculator Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Calculadora web interactiva que cambia su fondo dinámicamente según las condiciones climáticas del día, consumiendo una API del clima en tiempo real.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologías
 
-## React Compiler
+| Tecnología         | Versión | Uso                            |
+| ------------------ | ------- | ------------------------------ |
+| React              | 19      | UI y componentes               |
+| TypeScript         | 5.9     | Tipado estático                |
+| Vite               | 7.3     | Build tool y dev server        |
+| Tailwind CSS       | 4.2     | Estilos utilitarios            |
+| OpenWeatherMap API | —       | Datos del clima en tiempo real |
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 📁 Estructura del Proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── App.tsx                       # Componente principal
+├── main.tsx                      # Entry point de la aplicación
+├── assets/                       # Assets estáticos (imágenes, íconos)
+├── components/                   # Componentes de UI
+│   ├── button.tsx                # Botón individual de la calculadora
+│   ├── calculator.tsx            # Contenedor principal de la calculadora
+│   ├── display.tsx               # Pantalla que muestra los números
+│   ├── grid.tsx                  # Grid layout de los botones
+│   └── title.tsx                 # Título con información del clima
+├── context/                      # React Context providers
+│   └── WeatherContext.tsx        # Provider global del estado del clima
+├── hooks/                        # Custom hooks
+│   └── useWeather.ts             # Hook para consumir la API del clima
+├── services/                     # Servicios y llamadas a APIs externas
+│   └── weatherService.ts         # Conexión con la API del clima
+├── styles/                       # Estilos globales y temas
+│   └── index.css                 # Variables CSS y estilos base
+├── types/                        # Definiciones de tipos TypeScript
+│   └── index.ts                  # Interfaces (Weather, CalcState, etc.)
+└── utils/                        # Funciones utilitarias
+    └── weatherTheme.ts           # Mapeo de clima → colores/fondos
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Instalación
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# 1. Clonar el repositorio
+git clone <url-del-repositorio>
+cd calculator
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Configurar variables de entorno
+cp .env.example .env
+# Editar .env y agregar tu API Key de OpenWeatherMap
+
+# 4. Iniciar el servidor de desarrollo
+npm run dev
 ```
+
+---
+
+## 🔑 Configuración de la API del Clima
+
+1. Crea una cuenta gratuita en [OpenWeatherMap](https://openweathermap.org/)
+2. Genera una API Key en tu dashboard
+3. Copia el archivo `.env.example` a `.env`
+4. Reemplaza `tu_api_key_aqui` con tu API Key real:
+
+```env
+VITE_WEATHER_API_KEY=tu_api_key_real
+```
+
+---
+
+## 🌤️ Cómo Funciona el Cambio de Fondo
+
+La app obtiene el clima actual de la ciudad configurada y mapea la condición climática a un tema visual:
+
+| Condición    | Estilo del Fondo                      |
+| ------------ | ------------------------------------- |
+| ☀️ Soleado   | Gradientes cálidos (amarillo/naranja) |
+| ☁️ Nublado   | Gradientes grises                     |
+| 🌧️ Lluvioso  | Gradientes azul oscuro                |
+| ❄️ Nevado    | Gradientes blancos/celestes           |
+| ⛈️ Tormenta  | Gradientes púrpura/oscuros            |
+| 🌙 Despejado | Gradientes cyan/turquesa              |
+
+La transición entre temas es suave y animada con CSS transitions.
+
+---
+
+## 📜 Scripts Disponibles
+
+| Comando           | Descripción                         |
+| ----------------- | ----------------------------------- |
+| `npm run dev`     | Inicia el servidor de desarrollo    |
+| `npm run build`   | Genera el build de producción       |
+| `npm run lint`    | Ejecuta el linter (ESLint)          |
+| `npm run preview` | Previsualiza el build de producción |
