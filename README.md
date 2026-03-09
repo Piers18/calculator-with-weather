@@ -2,6 +2,8 @@
 
 Calculadora web interactiva que cambia su fondo dinámicamente según las condiciones climáticas del día, consumiendo una API del clima en tiempo real.
 
+<img width="814" height="797" alt="image" src="https://github.com/user-attachments/assets/f530b979-2846-43b4-ae67-803185adc72f" />
+
 ---
 
 ## 🚀 Tecnologías
