@@ -1,31 +1,73 @@
 import { ButtonCustom } from "./ButtonCustom";
+import { Display } from "./Display";
+import { useCalculator } from "../hooks/useCalculator";
 
 export function Grid() {
-    return (
-        <div className="grid grid-cols-4 grid-rows-5 gap-4 p-4 mt-4 bg-surface-base rounded-lg">
-            <ButtonCustom label="C" variant="action" onClickCustom={() => {console.log('Presionaste: C')}} />
-            <ButtonCustom label="+/-" variant="action" onClickCustom={() => { }} />
-            <ButtonCustom label="%" variant="action" onClickCustom={() => { }} />
-            <ButtonCustom label="/" variant="operator" onClickCustom={() => { }} />
+  const { state, handleButton } = useCalculator();
 
-            <ButtonCustom label="7" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="8" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="9" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="*" variant="operator" onClickCustom={() => { }} />
+  return (
+    <div>
+      <Display expression={state.expression} display={state.display} />
 
-            <ButtonCustom label="4" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="5" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="6" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="-" variant="operator" onClickCustom={() => { }} />
+      <div className="grid grid-cols-4 gap-3 mt-3">
+        {/* Row 1 — Actions & divide */}
+        <ButtonCustom label="C" variant="action" onClickCustom={handleButton} />
+        <ButtonCustom
+          label="+/-"
+          variant="action"
+          onClickCustom={handleButton}
+        />
+        <ButtonCustom label="%" variant="action" onClickCustom={handleButton} />
+        <ButtonCustom
+          label="/"
+          variant="operator"
+          onClickCustom={handleButton}
+        />
 
-            <ButtonCustom label="1" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="2" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="3" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="+" variant="operator" onClickCustom={() => { }} />
+        {/* Row 2 */}
+        <ButtonCustom label="7" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom label="8" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom label="9" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom
+          label="*"
+          variant="operator"
+          onClickCustom={handleButton}
+        />
 
-            <ButtonCustom label="0" variant="number" onClickCustom={() => { }} />
-            <ButtonCustom label="." variant="operator" onClickCustom={() => { }} />
-            <ButtonCustom className="col-span-2" label="=" variant="operator" onClickCustom={() => { }} />
-        </div>
-    );
+        {/* Row 3 */}
+        <ButtonCustom label="4" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom label="5" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom label="6" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom
+          label="-"
+          variant="operator"
+          onClickCustom={handleButton}
+        />
+
+        {/* Row 4 */}
+        <ButtonCustom label="1" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom label="2" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom label="3" variant="number" onClickCustom={handleButton} />
+        <ButtonCustom
+          label="+"
+          variant="operator"
+          onClickCustom={handleButton}
+        />
+
+        {/* Row 5 —  0 spans 2 cols */}
+        <ButtonCustom
+          className="col-span-2"
+          label="0"
+          variant="number"
+          onClickCustom={handleButton}
+        />
+        <ButtonCustom label="." variant="number" onClickCustom={handleButton} />
+        <ButtonCustom
+          label="="
+          variant="operator"
+          onClickCustom={handleButton}
+        />
+      </div>
+    </div>
+  );
 }

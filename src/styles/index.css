@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -24,4 +25,74 @@
   --color-surface-base: #0f2140;
   --color-surface-light: #162d57;
   --color-surface-card: #1a3566;
+}
+
+/* ── Base ─────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Glassmorphism ────────────────── */
+.glass {
+  background: rgba(15, 33, 64, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Button animations ────────────── */
+.btn-calc {
+  transition: all 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 1.15rem;
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-calc:hover {
+  transform: scale(1.06);
+  filter: brightness(1.15);
+}
+
+.btn-calc:active {
+  transform: scale(0.96);
+  filter: brightness(0.9);
+}
+
+/* ── Weather badge pulse ──────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.weather-pulse {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── Number display auto-resize ───── */
+.display-number {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
